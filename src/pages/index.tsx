@@ -12,6 +12,7 @@ import { getPrismicClient } from '../services/prismic';
 
 import commonStyles from '../styles/common.module.scss';
 import styles from './home.module.scss';
+import Head from 'next/head';
 
 interface Post {
   uid?: string;
@@ -85,6 +86,10 @@ export default function Home({postsPagination}: HomeProps): JSX.Element {
 
   return (
     <>
+      <Head>
+        <title>Home | Spacetraveling</title>
+      </Head>
+
       <main className={commonStyles.container}>
         <Header />
 
@@ -107,9 +112,11 @@ export default function Home({postsPagination}: HomeProps): JSX.Element {
               </a>
             </Link>
           ))}
-        <button type="button" onClick={handleNextPage}>
-          Carregar mais textos
-        </button>
+          {nextPage && (
+            <button type="button" onClick={handleNextPage}>
+              Carregar mais textos
+            </button>
+          )}
         </div>
       </main>
     </>
