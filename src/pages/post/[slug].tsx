@@ -5,7 +5,6 @@ import { FiCalendar, FiClock, FiUser } from 'react-icons/fi';
 import { ptBR } from 'date-fns/locale';
 import { useRouter } from 'next/router';
 import Prismic from '@prismicio/client';
-import Link from 'next/link';
 import Head from 'next/head';
 import Header from '../../components/Header';
 import { getPrismicClient } from '../../services/prismic';
@@ -51,9 +50,7 @@ interface PostProps {
   preview: boolean;
 }
 
-export default function Post({
-  post,
-}: PostProps): JSX.Element {
+export default function Post({ post }: PostProps): JSX.Element {
   const router = useRouter();
   if (router.isFallback) {
     return <h1>Carregando...</h1>;
@@ -68,7 +65,7 @@ export default function Post({
   }, 0);
   const readTime = Math.ceil(totalWords / 200);
 
-  const formatedDate = format(
+  const formattedDate = format(
     new Date(post.first_publication_date),
     'dd MMM yyyy',
     {
@@ -79,7 +76,7 @@ export default function Post({
   return (
     <>
       <Head>
-        <title>SpaceTraveling | {post.data.title}</title>
+        <title>{`SpaceTraveling | ${post.data.title}`}</title>
       </Head>
       <Header />
       <img src={post.data.banner.url} alt="imagem" className={styles.banner} />
@@ -90,7 +87,7 @@ export default function Post({
             <ul>
               <li>
                 <FiCalendar />
-                {formatedDate}
+                {formattedDate}
               </li>
               <li>
                 <FiUser />

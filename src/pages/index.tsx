@@ -53,8 +53,8 @@ export default function Home({postsPagination}: HomeProps): JSX.Element {
   const [ currentPage, setCurrentPage] = useState(1)
 
   async function handleNextPage(): Promise<void> {
-    if(currentPage !== 1 && nextPage === null) {
-      return
+    if (currentPage !== 1 && nextPage === null) {
+      return;
     }
 
     const postsResults = await fetch(`${nextPage}`).then(response =>
