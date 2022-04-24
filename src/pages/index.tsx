@@ -53,7 +53,7 @@ export default function Home({postsPagination}: HomeProps): JSX.Element {
   const [ currentPage, setCurrentPage] = useState(1)
 
   async function handleNextPage(): Promise<void> {
-    if (currentPage !== 1 && nextPage === null) {
+    if (currentPage != 1 && nextPage === null) {
       return;
     }
 
@@ -63,7 +63,7 @@ export default function Home({postsPagination}: HomeProps): JSX.Element {
     setNextPage(postsResults.next_page)
     setCurrentPage(postsResults.page)
 
-    const newPost = postsResults.results.map(post => {
+    const newPosts = postsResults.results.map(post => {
       return {
         uid: post.uid,
         first_publication_date: format(
@@ -81,7 +81,7 @@ export default function Home({postsPagination}: HomeProps): JSX.Element {
       }
     })
 
-    setPosts([...posts, ...newPost])
+    setPosts([...posts, ...newPosts])
   }
 
   return (
@@ -114,7 +114,7 @@ export default function Home({postsPagination}: HomeProps): JSX.Element {
           ))}
           {nextPage && (
             <button type="button" onClick={handleNextPage}>
-              Carregar mais textos
+              Carregar mais posts
             </button>
           )}
         </div>
